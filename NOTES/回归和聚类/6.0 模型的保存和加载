@@ -1,0 +1,4 @@
+模型的保存和加载:
+    API: sklearn.externals.joblib
+        - 保存: joblib.dump(rf, 'test.pkl')
+        - 加载: estimator = joblib.load('test.pkl')

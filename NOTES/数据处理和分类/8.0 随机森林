@@ -1,0 +1,25 @@
+8.0 随机森林(code: Decision_tree):
+    集成学习方法: 通过建立几个模型组合的来解决单一预测问题. 它的工作原理是生成多个分类器/模型, 各自独立地学习和做出预测.
+                这些预测最后结合成组合预测, 因此优于任何一种单分类做出地预测.
+    - 随机:
+        两个随机:
+            特征随机 - 从M个特征中随机抽取m个特征
+                M >> m
+                降维
+            训练集随机 - N个样本中随机有放回地抽样n个
+                bootstrap 随机有放回抽样
+                [1, 2, 3, 4, 5]
+                新的树的训练集
+                [2, 2, 3, 1, 5]
+    - 森林: 包含多个决策树的分类器
+
+    API: sklearn.ensemble.RandomForestClassifier(n_estimators=10, criterion='gini', max_depth=None, bootstrap=True,
+                                                 random_state=None, min_samples_split=2)
+        - 随机森林分类器
+        - n_estimators: integer, optional (default=10)森林里地树木数量  120, 200, 300, 500, 800, 1200
+        - criteria: string, 可选 (default='gini')分割特征地测量方法
+        - max_depth: integer or None, 可选(default=无)树的最大深度 5, 8, 15, 25, 30
+        - max_features='auto', 每个决策树的最大特征数量
+        - bootstrap: boolean, optional (default=True) 是否在构建树时使用放回抽样
+        - min_samples_split: 节点划分最少样本数
+        - min_samples_leaf: 叶子节点的最小样本数

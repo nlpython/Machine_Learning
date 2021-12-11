@@ -1,0 +1,13 @@
+LightGBM:
+    lightGBM演进过程:
+       C3.0(信息增益, 信息增益率) -> CART(Gini) -> 提升树(AdaBoost) ->
+       GBDT -> XGBoost -> LightGBM
+
+    lightGBM:
+        1. 基于HistGram(直方图)的决策树算法
+        2. Lightbm的Histogram(直方图)做差加
+        3. 带深度限制的Leaf-wise的叶子生长策略
+        4. 直接支持类别特征
+        5. 直接支持高效并行
+
+    API: lightgbm

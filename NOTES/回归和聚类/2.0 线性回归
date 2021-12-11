@@ -1,0 +1,74 @@
+线性回归(Linear regression):
+    定义: 线性回归是利用回归方程(函数)对一个或多个自变量(特征)和因变量(目标值)之间关系进行建模的一种分析方式.
+    1. 回归问题
+        目标值 - 连续性数据
+    2. 通用公式: h(w) = w1*x1 + w2*x2 + ....wn*xn + b = w.T * x + b  (线性模型)
+
+    3. 广义的线性模型:
+        * 线性关系
+        * 非线性关系
+        注: 在广义上,
+            自变量一次
+              y = w1x1 + w2x2 + w3x3 + ...+ wnxn + b
+            参数一次
+              y = w1x1^2 + w2x1 + w3x2^4 + ... + b
+            都称作线性模型, 前者是线性关系, 后者是非线性关系.
+
+    4. 损失函数和优化原理:
+        * 目标: 求模型参数
+            模型参数能够使得预测更准确
+        真实关系: 真实房子价格 = 0.02 * 中心区域的距离 + 0.04 * 城市一氧化氮浓度 + (-0.12) * 自住房平均房价 + ...
+        随机假定: 预测房子价格 = 0.25 * 中心区域的距离 + 0.14 * 城市一氧化氮浓度 + 0.42 * 自住房平均房价 + ...
+
+        损失函数/cost/成本函数/目标函数(最小二乘法):
+            cost = (h(x1) - y1) ^ 2 + (h(x2) - y2) * 2 + ... + (h(xn) - yn) ^ 2
+        优化损失方法:
+            * 正规方程
+                通过公式直接求出w
+                缺点: 当特征过多过复杂的时, 求解速度慢并且得不到结果
+                API: skearn.linear_model.LinearRegression(fit_intercept=True)
+                    - fit_intercept: 是否计算偏置 (b)
+                    - LinearRegression.coef_: 回归系数
+                    - LInearRegression.intercept_: 偏置
+            * 梯度下降
+                不断试错, 改进, 在数据量很大的情况下更有优势, 沿着最陡的路线逐渐过渡到最小值
+                API: skearn.linear_model.SGDRegressor(loss='squared_loss', fit_intercept=True, learning_rate='invscaling', eta0=0.01)
+                    - fit_intercept: 是否计算偏置 (b)
+                    - loss: 'squared_loss'表示最常见的最小二乘法
+                    - learning_rate: string, optional
+                        * 学习率填充
+                    - SGDRegressor.coef_: 回归系数
+                    - SGDRegressor.intercept_: 偏置
+
+    5. 波士顿房价预测:
+        流程:
+            1) 获取数据集
+            2) 划分数据集
+            3) 特征工程 - 标准化(无量纲化)
+            4) 预估器流程
+                fit() -> 模型
+                coef_intercept_
+            5) 模型评估
+
+    6. 模型评估:
+        均方误差(Mean Squared Error):
+            API: sklearn.metrics.mean_squared_error(y_true, y_pred)
+                - 均方误差回归损失
+                - y_true: 真实值
+                - y_pred: 预测值
+                - return: 浮点数结果
+
+    7. 梯度下降拓展方法(GD, SGD, SAG):
+        1) GD
+            梯度下降(Gradient Descent), 原始的梯度下降法需要计算所有样本的值才能够得出梯度, 计算量大, 所以后面才会有一系列的改进.
+        2) SGD
+            随机梯度下降(Stochastic Gradient Descent)是一个优化方法. 它在一次迭代时只考虑一个训练样本.
+                优点: 高效, 容易实现
+                缺点: 需要很多超参数: 比如正则项系数, 迭代数; 对于特征标准化时敏感的.
+        3) SAG
+            随机平均梯度法(Stochastic Average Gradient), 由于收敛的速度太慢,有人提出SAG等基于梯度下降的算法.
+            Scikit-learn: 岭回归, 逻辑回归等当中都会有SAG优化
+
+
+
+

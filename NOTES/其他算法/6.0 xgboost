@@ -1,0 +1,46 @@
+XGBoost(Extreme Gradient Boosting):
+    全名为极端梯度提升树, 是集成学习中的重要算法, 在kaggle数据挖掘比赛中, 大部分获胜者使用了XGBoost
+
+    API:  xgboost.XGBClassifier
+    xgboost中封装了很多参数, 主要由三种类型构成: 通用参数, Booster参数, 学习目标参数
+        - 通用参数: 主要是宏观函数控制
+        - Booster参数: 取决于选择的Booster类型, 用于控制每一步的booster(tree, regressiong);
+        - 学习目标参数: 控制训练目标的表现
+
+    2.1 通用参数:
+        - booster[缺省值=gbtree]
+            决定使用那个booster, 可以是个gbtree, dart, gblinear(前两者基于树的模型, 后者使用线性函数)
+        - silent[缺省值=0]
+            设置打印运行信息: 设置为0则打印, 1为静默模式, 不打印
+        - nthread[缺省值=设置为最大可能的线程数]
+            并行运行xgboost的线程数, 输入的参数应该<=系统cpu核心数, 若是没有设置算法会检测其设置为cpu的全部核心数
+
+    2.2 Booster参数:
+        * Tree Booster:
+            - eta[缺省值=0.3, 别名learning_rate]
+                更新中减少步长来防止过拟合
+                在每次boosting之后, 可以直接获取新的特征权值, 这样可以是的boosting更加鲁棒
+                范围: [0, 1]
+            - gamma[缺省值=0, 别名: min_split_loss] 分裂最小loss
+                在节点分裂时, 只有分裂后损失函数的值下降了, 才会分裂这个节点
+                范围: [0, 1]
+            - max_depth[缺省值=6]
+                这个值为树的最大深度, 这个值也是用来避免过拟合的. max_depth越大, 模型会学到更局部的样本, 设置为0代表没有限制
+                范围: [0, 1]
+            ....
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

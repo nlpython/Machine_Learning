@@ -1,0 +1,14 @@
+岭回归(code: Linear):
+    岭回归其实也是一种线性回归, 只不过在算法建立回归方程时候, 加上正则化的限制, 从而达到解决过拟合的效果
+
+    * API: sklearn.linear_model.Ridge(alpha=1.0, fit_intercept=True, solver='auto', normalize=False)
+        - 具有L2正则化的线性回归
+        - alpha: 正则化力度, 也叫λ, 即惩罚项力度
+                   λ取值范围: [0, 1], [1, 10]
+        - max_iter: 迭代次数
+        - solver: 会根据数据自动选择优化方法
+                   SAG: 如果数据集, 特征都比较多, 选择该随机梯度下降优化
+        - normalize: 数据是否进行标准化
+                   normalize=False: 可以在fit之前调用preprocessing.StandardScaler标准化数据
+        - Ridge.coef_: 回归权重
+        - Ridge.intercept_: 回归偏置

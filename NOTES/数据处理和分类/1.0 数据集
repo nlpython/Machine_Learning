@@ -1,0 +1,58 @@
+2.数据集(Datasets):
+    2.1 可用数据集
+        公司内部  百度
+        数据接口  购买
+
+        学习阶段可用的数据集:
+            1) sklearn
+            2) kaggle
+            3) UCI
+        Scikit-learn工具介绍
+
+    2.2 sklearn数据集
+        sklearn.datasets
+            load_*  获取小规模数据集
+            fetch_* 获取大规模数据集
+
+        1) sklearn小数据集
+            sklearn.datasets.load_iris()
+        2) sklearn大数据集
+            sklearn.datasets.fetch_20newsgroups(data_home=None)
+        3) 数据集的返回值
+            dataset.base.Bunch (继承自字典)
+                dict["key"] = values
+                Bunch.key = values
+
+    2.3 数据集的划分
+        训练集: 用于训练, 构建模型
+        测试集: 检验模型, 用于评估模型是否有效
+                测试集一般占20%~30%
+
+        数据集划分API:
+            sklearn.model_selection.train_test_split(arrays, *options)
+            - x数据集的特征值
+            - y数据集的标签值
+            - test_size测试集的大小, 一般为float 例如0.2, 0.3(表示测试集占20%, 30%)
+            - random_state随机数种子, 不同的种子会造成不同的随机采样结果. 相同的种子采样结果相同.
+            - return 训练集特征值, 测试集特征值, 训练集目标值, 测试集目标值
+                     x_train     x_test       y_train     y_test
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,17 @@
+转换器和估计器(estimator):
+    1. 转换器:
+        1) 实例化 (实例化的是一个转换器类(Transformer))
+        2) 调用fit_transform(对于文档建立分类词频矩阵, 不能同时调用)
+            标准化: (x - mean) / std
+             fit_transform()
+                fit()         求出每一列的平均值和方差
+                transform()   (x - mean) / std 完成最终转换
+    2. 估计器:
+        1) 实例化一个estimator类
+        2) estimator.fit(x_train, y_train) 计算并生成模型
+        3) 模型评估:
+            * 直接比对真实值和预测值
+                y_predict = estimator.predict(x_test)
+                y_test == y_predict
+            * 计算准确率
+                accuracy = estimator.score(x_test, y_test)

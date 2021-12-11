@@ -1,0 +1,44 @@
+特征降维:
+    在某些限定条件下, 降低随机变量(特征)个数, 得到一组"不相关"主变量的过程.
+
+    1. 特征选择
+        定义: 数据中包含冗余或相关变量(或特征,属性,指标等), 旨在从原有特征中找出重要特征.
+        Filter: 过滤式
+            方差选择法: 低方差特征过滤
+            相关系数法: 横量特征与特征之间的相关程度
+        Embeded: 嵌入式
+            决策树
+            正则化
+            深度学习
+
+        API: sklearn.feature_selection.VarianceThreshold(threshold=0.0)
+            - 删除所有低方差特征
+            - VarianceThreshold.fit_transform(X)
+                - X: numpy array格式的数据[n_samples, n_features]
+                - 返回值: 训练集差异低于threshold的特征被删除. 默认是保留所有非零方差特征, 即删除所有样本中都具有相同值的特征.
+
+        皮尔逊相关系数(Pearson Correlation Coeffficient):
+            - 反应特征间相关关系密切程度的统计指标
+            - 取值范围[-1, 1]  大于0为正相关, 小于0为负相关
+            from scipy.stats import pearsonr
+            - x: (N,)array_like
+            - y: (N,)array_like
+            - Returns:(Pearson's correlation coefficient, p-value)
+            当特征之间相关系数很高时的选择:
+                1) 选取其中一个
+                2) 按一定权重加权形成一个新的特征
+                3) 主成分分析
+
+    2. 主成分分析
+        定义: 将高维数据转化为低维数据的过程, 在此过程中可能会舍弃原有数据, 创造出新的变量
+        作用: 尽可能降低原数据的维度, 尽可能损失较少的信息
+        应用: 回归分析或者聚类分析当中
+
+        API: sklearn.decomposition.PCA(n_components=None)
+            注: 如果n_components参数为小数的话, 表示保留百分之多少的信息
+                如果是整数的话, 表示减少到多少特征
+            PCA.fit_transform(X)
+                - X: numpy array格式的数据
+                - Return: 转换后指定维度的array
+                - n_components_: 降维之后的维数
+

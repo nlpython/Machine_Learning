@@ -1,0 +1,28 @@
+特征预处理:
+    解释: 通过一些转换函数将特征数据转换成更加适合算法模型的特征数据过程
+
+    主要内容:
+        1. 归一化
+        2. 标准化
+
+    API: sklearn.preprocessing
+    为什么要进行归一化和标准化 (无量纲化): 将不同类型的数据, 将不同数量级的数据统一化
+
+    1. 归一化: 通过原始数据进行变换把数据映射到(默认为[0, 1])的区间内
+        公式: X' = (x - min) / (max - min)   X'' = X' * (mx - mi) + mi   注: mi, mx对应于区间左值和右值
+        sklearn.preprocessing.MinMaxScaler(feature_range=[0, 1]...)
+            MinMaxScaler.fit_transform(X)
+                - X: numpy array格式的数据[n_samples, n_features]
+                - 返回值: 转换后形状相同的array
+        异常值: 一般为最大值或最小值
+        缺点: 当数据中有较多的异常值时, 归一化方法的健壮性较差, 只适合传统精确小数据场景.
+    2. 标准化
+        公式: X' = (x - mean) / std     注: mean为平均值, std为标准差
+        sklean.preprocessing.StandardScaler()
+            StandarScaler.fit_transform(X)
+            处理后每列的数据都聚集在均值0附近, 标准差为1
+                - X: numpy array格式的数据[n_samples, n_features]
+                - 返回值: 转换后形状相同的array
+        优点: 在已有样本足够多的情况下比较稳定, 适合现在嘈杂大数据的特点
+
+

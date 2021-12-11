@@ -1,0 +1,42 @@
+决策树 :
+    1. 信息的衡量: bit  信息量 - 信息熵
+    2. 信息增益
+        g(D, A) = H(D) - H(D|A)
+        优先选择信息增益更高的特征作为决策指标
+    3. API:
+        sklearn.tree.DecisionTreeClassifier(criterion='gini', max_depth=None, random_state=None)
+            - 决策树分类器
+            - criterion: 默认是'gini'系数, 也可以选择信息熵增益的熵'entropy'
+            - max_depth: 树的最大深度
+            - random_state: 随机数种子
+
+    4. 应用场景:
+        - 更适合数据量较大的场景
+    5. 决策树的可视化
+        API: sklearn.tree.export_graphviz(): 该函数能到导出dot格式
+            - tree.export_graphviz(estimator, out_file='tree.dot', feature_names=[","])
+            例: tree.export_graphviz(estimator, out_file='./tree.dot', feature_names=["age", "p"])
+    6. 优点:
+        - 可视化
+        - 可处理大规模数据
+        - 不需要标准化
+    7. 缺点:
+        - 容易产生过拟合(max_dept的取值)
+    8. 改进:
+        - 剪枝cart算法(决策树API当中已经实现, 随机森林调优有相关介绍)
+        - 随机森林
+
+
+    9. 案例: 泰坦尼克号乘客生存分析
+        流程分析:
+            特征值, 目标值
+            1) 获取数据
+            2) 数据处理
+                缺失值处理, 特征值->字典类型
+            3) 准备好特征值 目标值
+            4) 划分数据集
+            5) 特征工程: 字典特征抽取
+            6) 决策树预估器流程
+            7) 模型评估
+
+
